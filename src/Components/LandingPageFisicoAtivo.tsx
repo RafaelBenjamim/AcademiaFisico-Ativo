@@ -150,22 +150,22 @@ const DIFERENCIAIS = [
 
 const TESTIMONIALS = [
   {
-    name: "Aluna de FitDance",
+    name: "Aluna de Musculação",
+    time: "há 5 anos na Físico Ativo",
+    quote:
+      "Academia muito boa, instrutores bem preparados e atenciosos, aparelhos conservados, ambiente muito bom para malhar.",
+  },
+  {
+    name: "Aluna de Musculação",
     time: "há 2 anos na Físico Ativo",
     quote:
-      "Treino que não parece treino! Chego cansada do trabalho e saio com energia renovada.",
+      "Academia excelente que ao longo dos anos vem se aprimorando. Referência no bairro. .",
   },
   {
-    name: "Aluno de Muay Thai",
-    time: "há 1 ano na Físico Ativo",
+    name: "Aluno de Natação",
+    time: "há 3 anos na Físico Ativo",
     quote:
-      "Além da evolução física, o Muay Thai aqui me deu disciplina. A turma vira uma segunda família rapidinho.",
-  },
-  {
-    name: "Aluno de Musculação",
-    time: "há 4 anos na Físico Ativo",
-    quote:
-      "Já treinei em academia grande e fria. Aqui alguém sabe meu nome, meu histórico e minha meta.",
+      "Minhas crianças fazem natação. Muito satisfeita com o trabalho das professoras e de toda a equipe da academia.",
   },
 ];
 
