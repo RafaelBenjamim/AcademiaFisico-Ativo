@@ -115,7 +115,7 @@ const MODALITIES = [
   },
   {
     icon: Flame,
-    title: "Muay Thai",
+    title: "Jiu-Jitsu",
     desc: "Condicionamento físico completo com técnica, disciplina e autodefesa.",
   },
   {
