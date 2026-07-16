@@ -15,8 +15,8 @@
  * DADOS REAIS usados nesta página (extraídos de fontes públicas do
  * Instagram, cadastro público e postagens da própria academia):
  *  - Nome: Academia Físico Ativo
- *  - Endereço: Rua João de Oliveira Andrade, 806 - Tocantins, Uberlândia - MG
- *  - Telefone/WhatsApp: (34) 99180-3411
+ *  - Unidade Tocantins: R. João de Oliveira Andrade, 806 · (34) 99773-0362
+ *  - Unidade Monte Hebron: Av. Contador José Candeloro, 91 · (34) 99884-2476
  *  - Modalidades confirmadas: Musculação, Funcional, Muay Thai, FitDance
  *  - Mais de 15 anos de atuação (fundada em 2010)
  *
@@ -51,24 +51,46 @@ import {
 /* Dados da academia                                                   */
 /* ------------------------------------------------------------------ */
 
-const WHATSAPP_NUMBER = "5534997730362"; // (34) 99180-3411
 const WHATSAPP_MESSAGE =
   "Olá! Vim pelo site e quero agendar minha aula experimental grátis 💪";
-const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
-const PHONE_DISPLAY = "(34) 99180-3411";
-const TEL_LINK = "tel:+5534991803411";
+const waLink = (number: string) =>
+  `https://wa.me/${number}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+
 const INSTAGRAM_LINK = "https://www.instagram.com/academiafisicoativo/";
 const INSTAGRAM_HANDLE = "@academiafisicoativo";
-const MAPS_LINK =
-  "https://www.google.com/maps/search/?api=1&query=Rua+Jo%C3%A3o+de+Oliveira+Andrade%2C+806+-+Tocantins%2C+Uberl%C3%A2ndia+-+MG";
-const ADDRESS =
-  "Rua João de Oliveira Andrade, 806 - Tocantins, Uberlândia - MG, 38415-294";
-const MAP_EMBED_SRC =
-  "https://www.google.com/maps?q=Rua+Jo%C3%A3o+de+Oliveira+Andrade,+806+-+Tocantins,+Uberl%C3%A2ndia+-+MG,+38415-294&output=embed";
+
+// Unidade usada nos CTAs genéricos do site (hero, nav, banner, botão flutuante).
+// Trocar para MONTE_HEBRON_WHATSAPP se preferir usar a outra unidade como padrão.
+const DEFAULT_WHATSAPP_NUMBER = "5534997730362"; // Tocantins
+const WHATSAPP_LINK = waLink(DEFAULT_WHATSAPP_NUMBER);
+const TEL_LINK = "tel:+5534997730362";
+
+const UNITS = [
+  {
+    name: "Tocantins",
+    address: "R. João de Oliveira Andrade, 806 - Tocantins, Uberlândia - MG",
+    phoneDisplay: "(34) 99773-0362",
+    whatsapp: "5534997730362",
+    mapsLink:
+      "https://www.google.com/maps/search/?api=1&query=R.+Jo%C3%A3o+de+Oliveira+Andrade%2C+806+-+Tocantins%2C+Uberl%C3%A2ndia+-+MG",
+    mapEmbedSrc:
+      "https://www.google.com/maps?q=R.+Jo%C3%A3o+de+Oliveira+Andrade,+806+-+Tocantins,+Uberl%C3%A2ndia+-+MG&output=embed",
+  },
+  {
+    name: "Monte Hebron",
+    address: "Av. Contador José Candeloro, 91 - Monte Hebron, Uberlândia - MG",
+    phoneDisplay: "(34) 99884-2476",
+    whatsapp: "5534998842476",
+    mapsLink:
+      "https://www.google.com/maps/search/?api=1&query=Av.+Contador+Jos%C3%A9+Candeloro%2C+91+-+Monte+Hebron%2C+Uberl%C3%A2ndia+-+MG",
+    mapEmbedSrc:
+      "https://www.google.com/maps?q=Av.+Contador+Jos%C3%A9+Candeloro,+91+-+Monte+Hebron,+Uberl%C3%A2ndia+-+MG&output=embed",
+  },
+];
 
 // ⚠️ Confirme o horário exato de funcionamento com a academia antes de publicar.
 const HOURS = [
-  { label: "Segunda a sexta", value: "05h30 às 22h00" },
+  { label: "Segunda a sexta", value: "06h00 às 22h00" },
   { label: "Sábado", value: "08h00 às 12h00" },
   { label: "Domingo", value: "Fechado" },
 ];
@@ -335,7 +357,7 @@ export default function FisicoAtivoLandingPage() {
         <div className="relative max-w-7xl mx-auto grid lg:grid-cols-2 gap-14 items-center">
           <div>
             <p className="text-xs sm:text-sm font-bold tracking-[0.25em] uppercase text-[#FFB020] mb-5">
-              Academia Físico Ativo • Tocantins, Uberlândia
+              Academia Físico Ativo • 2 unidades em Uberlândia
             </p>
             <h1 className="font-display uppercase text-white text-[2.6rem] leading-[0.95] sm:text-6xl lg:text-[3.6rem] lg:leading-[0.95]">
               Corpo ativo,
@@ -591,106 +613,112 @@ export default function FisicoAtivoLandingPage() {
       </section>
 
       {/* -------------------------------------------------------------- */}
-      {/* LOCALIZAÇÃO                                                     */}
+      {/* LOCALIZAÇÃO — DUAS UNIDADES                                     */}
       {/* -------------------------------------------------------------- */}
       <section
         id="localizacao"
         className="bg-[#F1F3F6] py-20 sm:py-28 px-5 sm:px-8"
       >
         <div className="max-w-7xl mx-auto">
-          <div className="max-w-xl mb-14">
+          <div className="max-w-xl mb-10">
             <SectionEyebrow>Venha treinar com a gente</SectionEyebrow>
             <h2 className="font-display uppercase text-3xl sm:text-4xl leading-tight">
-              Estamos no coração do Tocantins
+              Duas unidades para você treinar pertinho de casa
             </h2>
             <Swoosh className="w-32 h-3.5 text-[#FF4429] mt-3" />
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 items-stretch">
-            <div className="rounded-2xl overflow-hidden shadow-md min-h-[320px] h-full">
-              <iframe
-                src={MAP_EMBED_SRC}
-                title="Localização da Academia Físico Ativo"
-                className="w-full h-full min-h-[320px] border-0"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+          {/* Horário — igual nas duas unidades */}
+          <div className="flex items-start gap-3 bg-white rounded-2xl p-5 mb-8 max-w-xl">
+            <Clock size={20} className="text-[#FF4429] shrink-0 mt-0.5" />
+            <div className="flex flex-wrap gap-x-6 gap-y-1">
+              {HOURS.map((h) => (
+                <div key={h.label} className="flex gap-2 text-sm">
+                  <span className="text-[#4B5160]">{h.label}:</span>
+                  <span className="font-semibold">{h.value}</span>
+                </div>
+              ))}
             </div>
+          </div>
 
-            <div className="rounded-2xl bg-[#12141C] p-7 sm:p-9 flex flex-col justify-between">
-              <div className="space-y-6">
-                <div className="flex gap-3">
-                  <MapPin
-                    size={20}
-                    className="text-[#FF4429] shrink-0 mt-0.5"
-                  />
-                  <div>
-                    <p className="text-white font-semibold text-sm">
-                      {ADDRESS}
-                    </p>
-                    <a
-                      href={MAPS_LINK}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-[#FFB020] text-xs font-bold mt-1 hover:underline"
-                    >
-                      Como chegar <ChevronRight size={14} />
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex gap-3">
-                  <Clock size={20} className="text-[#FF4429] shrink-0 mt-0.5" />
-                  <div className="space-y-1">
-                    {HOURS.map((h) => (
-                      <div key={h.label} className="flex gap-2 text-sm">
-                        <span className="text-white/60 w-32 shrink-0">
-                          {h.label}
-                        </span>
-                        <span className="text-white font-semibold">
-                          {h.value}
-                        </span>
+          <div className="grid md:grid-cols-2 gap-6">
+            {UNITS.map((unit) => (
+              <div
+                key={unit.name}
+                className="rounded-2xl overflow-hidden shadow-md bg-white flex flex-col"
+              >
+                <iframe
+                  src={unit.mapEmbedSrc}
+                  title={`Localização da unidade ${unit.name}`}
+                  className="w-full h-[220px] border-0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+                <div className="bg-[#12141C] p-6 sm:p-7 flex flex-col flex-1 justify-between">
+                  <div className="space-y-5">
+                    <div>
+                      <h3 className="font-display uppercase text-white text-xl">
+                        {unit.name}
+                      </h3>
+                      <div className="flex gap-2 mt-2">
+                        <MapPin
+                          size={18}
+                          className="text-[#FF4429] shrink-0 mt-0.5"
+                        />
+                        <div>
+                          <p className="text-white/80 text-sm">
+                            {unit.address}
+                          </p>
+                          <a
+                            href={unit.mapsLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 text-[#FFB020] text-xs font-bold mt-1 hover:underline"
+                          >
+                            Como chegar <ChevronRight size={14} />
+                          </a>
+                        </div>
                       </div>
-                    ))}
+                    </div>
+
+                    <div className="flex gap-2">
+                      <Phone
+                        size={18}
+                        className="text-[#FF4429] shrink-0 mt-0.5"
+                      />
+                      <a
+                        href={`tel:+${unit.whatsapp}`}
+                        className="text-white font-semibold text-sm hover:underline"
+                      >
+                        {unit.phoneDisplay}
+                      </a>
+                    </div>
                   </div>
-                </div>
 
-                <div className="flex gap-3">
-                  <Phone size={20} className="text-[#FF4429] shrink-0 mt-0.5" />
                   <a
-                    href={TEL_LINK}
-                    className="text-white font-semibold text-sm hover:underline"
-                  >
-                    {PHONE_DISPLAY}
-                  </a>
-                </div>
-
-                <div className="flex gap-3">
-                  <Camera
-                    size={20}
-                    className="text-[#FF4429] shrink-0 mt-0.5"
-                  />
-                  <a
-                    href={INSTAGRAM_LINK}
+                    href={waLink(unit.whatsapp)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white font-semibold text-sm hover:underline"
+                    className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-[#FF4429] px-6 py-3.5 text-sm font-bold text-white hover:bg-[#e5391f] transition-colors"
                   >
-                    {INSTAGRAM_HANDLE}
+                    <MessageCircle size={18} strokeWidth={2.5} />
+                    Agendar na unidade {unit.name}
                   </a>
                 </div>
               </div>
+            ))}
+          </div>
 
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-[#FF4429] px-6 py-4 text-sm font-bold text-white hover:bg-[#e5391f] transition-colors"
-              >
-                <MessageCircle size={18} strokeWidth={2.5} />
-                Agendar minha aula grátis
-              </a>
-            </div>
+          <div className="flex gap-2 items-center justify-center mt-8 text-sm text-[#4B5160]">
+            <Camera size={16} className="text-[#FF4429]" />
+            <a
+              href={INSTAGRAM_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold hover:underline"
+            >
+              {INSTAGRAM_HANDLE}
+            </a>
           </div>
         </div>
       </section>
@@ -729,13 +757,23 @@ export default function FisicoAtivoLandingPage() {
 
           <div>
             <h4 className="text-white font-bold text-sm uppercase tracking-wide mb-4">
-              Contato
+              Unidades
             </h4>
-            <div className="flex flex-col gap-2.5 text-sm">
-              <span>{ADDRESS}</span>
-              <a href={TEL_LINK} className="hover:text-white transition-colors">
-                {PHONE_DISPLAY}
-              </a>
+            <div className="flex flex-col gap-4 text-sm">
+              {UNITS.map((unit) => (
+                <div key={unit.name}>
+                  <p className="text-white font-semibold text-xs uppercase tracking-wide">
+                    {unit.name}
+                  </p>
+                  <p>{unit.address}</p>
+                  <a
+                    href={`tel:+${unit.whatsapp}`}
+                    className="hover:text-white transition-colors"
+                  >
+                    {unit.phoneDisplay}
+                  </a>
+                </div>
+              ))}
               <a
                 href={INSTAGRAM_LINK}
                 target="_blank"
@@ -753,7 +791,7 @@ export default function FisicoAtivoLandingPage() {
             © {new Date().getFullYear()} Academia Físico Ativo. Todos os
             direitos reservados.
           </span>
-          <span>Tocantins, Uberlândia - MG</span>
+          <span>Tocantins e Monte Hebron, Uberlândia - MG</span>
         </div>
       </footer>
 
